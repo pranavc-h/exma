@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SEM 4 Study Tracker</title>
+  <style>
+    /* GOOGLE FONT */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    :root {
+      --primary-color: #2c3e50;
+      --accent-color: #2980b9;
+      --bg-light: #f7f7f7;
+      --white: #ffffff;
+      --exam-color: #ffdede;
+      --free-color: #ecf0f1;
+      --input-border: #bdc3c7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      background: var(--bg-light);
+      color: var(--primary-color);
+    }
+
+    /* SPLASH SCREEN */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2980b9 0%, #2c3e50 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      z-index: 10;
+    }
+
+    #splash h1 {
+      color: var(--white);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    #splash p {
+      color: var(--white);
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 400px;
+      line-height: 1.4;
+    }
+
+    #splash button {
+      padding: 0.8rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      background: var(--accent-color);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #splash button:hover {
+      background: #1f6285;
+    }
+
+    /* MAIN CONTENT */
+    .container {
+      max-width: 1200px;
+      margin: 100px auto 40px auto; /* leave space for splash hide transition */
+      padding: 0 20px;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+      background-color: var(--accent-color);
+      color: var(--white);
+      position: sticky;
+      top: 0;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    tr:nth-child(even):not(.exam-row):not(.free-row) {
+      background-color: var(--free-color);
+    }
+
+    tr:hover td {
+      background-color: #e8f6ff;
+    }
+
+    .exam-row td {
+      background-color: var(--exam-color) !important;
+    }
+
+    .free-row td {
+      background-color: var(--free-color) !important;
+    }
+
+    .remark-input {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 0.95rem;
+      border: 1px solid var(--input-border);
+      border-radius: 4px;
+      transition: border-color 0.3s ease;
+    }
+
+    .remark-input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+
+      th, td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+
+      .remark-input {
+        font-size: 0.85rem;
+        padding: 6px 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      th, td {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+      }
+
+      .remark-input {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <h1>📚 Ready to Conquer SEM 4?</h1>
+    <p>“The future belongs to those who believe in the beauty of their dreams.”<br/>— Eleanor Roosevelt</p>
+    <button id="startBtn">Start Tracking</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container" id="mainContent">
+    <h1>VTU 4th Sem Study Tracker</h1>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Sl. No.</th>
+            <th>Date</th>
+            <th>Subject</th>
+            <th>Topic</th>
+            <th>Remark ✏️</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ADA Module 1 -->
+          <tr>
+            <td>1</td>
+            <td>07-06-2025</td>
+            <td>ADA</td>
+            <td>M1</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-07-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- DBMS Module 1 -->
+          <tr>
+            <td>2</td>
+            <td>09-06-2025</td>
+            <td>DBMS</td>
+            <td>M1</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-09-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- DMS Module 1 -->
+          <tr>
+            <td>3</td>
+            <td>10-06-2025</td>
+            <td>DMS</td>
+            <td>M1</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-10-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- Biology Modules -->
+          <tr>
+            <td>4</td>
+            <td>11-06-2025</td>
+            <td>Biology</td>
+            <td>M1</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-11-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>12-06-2025</td>
+            <td>Biology</td>
+            <td>M2</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-12-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>13-06-2025</td>
+            <td>Biology</td>
+            <td>M3</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-13-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>14-06-2025</td>
+            <td>Biology</td>
+            <td>M4</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-14-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>15-06-2025</td>
+            <td>Biology</td>
+            <td>M5</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-15-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>16-06-2025</td>
+            <td>Biology</td>
+            <td>PYQ</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-16-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- Biology Exam -->
+          <tr class="exam-row">
+            <td>10</td>
+            <td>17-06-2025</td>
+            <td><strong>Biology Exam 📝</strong></td>
+            <td>—</td>
+            <td>Exam Day 🎓</td>
+          </tr>
+          <!-- ADA Modules 2–5 -->
+          <tr>
+            <td>11</td>
+            <td>18-06-2025</td>
+            <td>ADA</td>
+            <td>M2</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-18-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>19-06-2025</td>
+            <td>ADA</td>
+            <td>M3</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-19-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>20-06-2025</td>
+            <td>ADA</td>
+            <td>M4</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-20-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>21-06-2025</td>
+            <td>ADA</td>
+            <td>M5</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-21-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>22-06-2025</td>
+            <td>ADA</td>
+            <td>PYQ</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-22-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- ADA Exam -->
+          <tr class="exam-row">
+            <td>16</td>
+            <td>23-06-2025</td>
+            <td><strong>ADA Exam 📝</strong></td>
+            <td>—</td>
+            <td>Exam Day 🚀</td>
+          </tr>
+          <!-- Free Time Days -->
+          <tr class="free-row">
+            <td>17</td>
+            <td>24-06-2025</td>
+            <td>Free Time 😊</td>
+            <td>Catch Up / Rest</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-24-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr class="free-row">
+            <td>18</td>
+            <td>25-06-2025</td>
+            <td>Free Time 😊</td>
+            <td>Catch Up / Rest</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-25-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr class="free-row">
+            <td>19</td>
+            <td>26-06-2025</td>
+            <td>Free Time 😊</td>
+            <td>Catch Up / Rest</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-26-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- Microcontroller Modules -->
+          <tr>
+            <td>20</td>
+            <td>27-06-2025</td>
+            <td>Microcontroller</td>
+            <td>M1</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-27-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>21</td>
+            <td>28-06-2025</td>
+            <td>Microcontroller</td>
+            <td>M2</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-28-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>22</td>
+            <td>29-06-2025</td>
+            <td>Microcontroller</td>
+            <td>M3</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-29-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>23</td>
+            <td>30-06-2025</td>
+            <td>Microcontroller</td>
+            <td>M4</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-30-06-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>24</td>
+            <td>01-07-2025</td>
+            <td>Microcontroller</td>
+            <td>M5</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-01-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>25</td>
+            <td>02-07-2025</td>
+            <td>Microcontroller</td>
+            <td>PYQ</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-02-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- Microcontroller Exam -->
+          <tr class="exam-row">
+            <td>26</td>
+            <td>03-07-2025</td>
+            <td><strong>Microcontroller Exam 📝</strong></td>
+            <td>—</td>
+            <td>Exam Day ⚙️</td>
+          </tr>
+          <!-- DBMS Modules 2–5 -->
+          <tr>
+            <td>27</td>
+            <td>04-07-2025</td>
+            <td>DBMS</td>
+            <td>M2</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-04-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>28</td>
+            <td>05-07-2025</td>
+            <td>DBMS</td>
+            <td>M3</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-05-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>29</td>
+            <td>06-07-2025</td>
+            <td>DBMS</td>
+            <td>M4</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-06-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>30</td>
+            <td>07-07-2025</td>
+            <td>DBMS</td>
+            <td>M5</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-07-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>31</td>
+            <td>08-07-2025</td>
+            <td>DBMS</td>
+            <td>PYQ</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-08-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- DBMS Exam -->
+          <tr class="exam-row">
+            <td>32</td>
+            <td>09-07-2025</td>
+            <td><strong>DBMS Exam 📝</strong></td>
+            <td>—</td>
+            <td>Exam Day 💾</td>
+          </tr>
+          <!-- DMS Modules 2–5 -->
+          <tr>
+            <td>33</td>
+            <td>10-07-2025</td>
+            <td>DMS</td>
+            <td>M2</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-10-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>34</td>
+            <td>11-07-2025</td>
+            <td>DMS</td>
+            <td>M3</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-11-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>35</td>
+            <td>12-07-2025</td>
+            <td>DMS</td>
+            <td>M4</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-12-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>36</td>
+            <td>13-07-2025</td>
+            <td>DMS</td>
+            <td>M5</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-13-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>37</td>
+            <td>14-07-2025</td>
+            <td>DMS</td>
+            <td>PYQ</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-14-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- DMS Exam -->
+          <tr class="exam-row">
+            <td>38</td>
+            <td>15-07-2025</td>
+            <td><strong>DMS Exam 📝</strong></td>
+            <td>—</td>
+            <td>Exam Day 📐</td>
+          </tr>
+          <!-- Free Time Days -->
+          <tr class="free-row">
+            <td>39</td>
+            <td>16-07-2025</td>
+            <td>Free Time 😊</td>
+            <td>Catch Up / Rest</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-16-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr class="free-row">
+            <td>40</td>
+            <td>17-07-2025</td>
+            <td>Free Time 😊</td>
+            <td>Catch Up / Rest</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-17-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- UHV Modules -->
+          <tr>
+            <td>41</td>
+            <td>18-07-2025</td>
+            <td>UHV</td>
+            <td>M1–M2.5</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-18-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr>
+            <td>42</td>
+            <td>19-07-2025</td>
+            <td>UHV</td>
+            <td>M2.5–M5</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-19-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <tr class="free-row">
+            <td>43</td>
+            <td>20-07-2025</td>
+            <td>Free Time 😊</td>
+            <td>Final Prep / Rest</td>
+            <td>
+              <input type="text" class="remark-input" data-key="remark-20-07-2025" placeholder="Enter remark…" />
+            </td>
+          </tr>
+          <!-- UHV Exam -->
+          <tr class="exam-row">
+            <td>44</td>
+            <td>21-07-2025</td>
+            <td><strong>UHV Exam 📝</strong></td>
+            <td>—</td>
+            <td>Exam Day 🌟</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    // Splash screen logic
+    document.getElementById('startBtn').addEventListener('click', () => {
+      const splash = document.getElementById('splash');
+      const main = document.getElementById('mainContent');
+      splash.style.opacity = '0';
+      setTimeout(() => {
+        splash.style.display = 'none';
+        main.style.opacity = '1';
+      }, 600);
+    });
+
+    // On page load, populate each remark input from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.remark-input').forEach(input => {
+        const key = input.dataset.key;
+        const saved = localStorage.getItem(key);
+        if (saved) {
+          input.value = saved;
+        }
+        // Save on input change
+        input.addEventListener('change', () => {
+          localStorage.setItem(key, input.value);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
